@@ -3,11 +3,12 @@ import dotenv from "dotenv"
 import cors from "cors"
 import cookieParser from "cookie-parser";
 import database from "./database/db.js"
+//import {errorMiddleware} from "./middlewares/error.js";
+import AuthRouter from "./router/AuthRouter.js"; 
 
 const app=express();
 
 const result = dotenv.config({ path: "./.env" });
-
 
 
 app.use(cookieParser())
@@ -19,7 +20,12 @@ app.get("/",(req,res)=>{
     res.send("Hello!")
 })
 
+app.post("/registration",AuthRouter)
+app.post("/login",AuthRouter)
 
+
+
+// app.use(errorMiddleware)
 database().then(()=>{
     console.log("DB connected")
     app.listen(3000,()=>{
