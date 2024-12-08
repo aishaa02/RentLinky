@@ -6,7 +6,7 @@ const getHouseRouter=express.Router();
 
 getHouseRouter.get("/getHouses",isAuth, async (req,res)=>{
     
-    const houses=await House.find({expired:false,location:"Belagavi"})
+    const houses=await House.find()
 
     res.send(houses)
 
