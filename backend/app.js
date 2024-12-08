@@ -5,6 +5,10 @@ import cookieParser from "cookie-parser";
 import database from "./database/db.js"
 //import {errorMiddleware} from "./middlewares/error.js";
 import AuthRouter from "./router/AuthRouter.js"; 
+import profileRouter from "./router/profile.js"
+import homeRouter from "./router/addHouse.js";
+import getHouseRouter from "./router/getHomes.js"
+
 
 const app=express();
 
@@ -22,7 +26,9 @@ app.get("/",(req,res)=>{
 
 app.post("/registration",AuthRouter)
 app.post("/login",AuthRouter)
-
+app.get("/profile",profileRouter)
+app.post("/addHouse",homeRouter);
+app.get("/getHouses",getHouseRouter)
 
 
 // app.use(errorMiddleware)

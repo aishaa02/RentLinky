@@ -32,23 +32,23 @@ const userSchema=new mongoose.Schema({
 
 
 //password hashing
-userSchema.pre("save", async function (next){
-    if(!this.isModified.password)
-    {
-       return next();
-    }
+// userSchema.pre("save", async function (next){
+//     if(!this.isModified.password)
+//     {
+//        return next();
+//     }
 
-    this.password= await bcrypt.hash(this.password,10);
-})
+//     this.password= await bcrypt.hash(this.password,10);
+// })
 
-//password comparing
-userSchema.methods.comparePassword=async function (enterredPassword){
-    return bcrypt.compare(enterredPassword,this.password)
-} 
+// //password comparing
+// userSchema.methods.comparePassword=async function (enterredPassword){
+//     return bcrypt.compare(enterredPassword,this.password)
+// } 
 
-//cookie-sessions
-userSchema.methods.getjwt=function (){
-    return jwt.sign({_id:this._id},"RENTLINK210")
-}
+// //cookie-sessions
+// userSchema.methods.getjwt=function (){
+//     return jwt.sign({_id:this._id},"RENTLINK210")
+// }
 
 export const User=mongoose.model("User",userSchema)

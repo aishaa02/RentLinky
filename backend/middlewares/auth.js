@@ -1,18 +1,26 @@
 // import ErrorHandler from "./error";
-import { User } from "../models/user";
+import { User } from "../models/user.js";
+import jwt from "jsonwebtoken"
 
 const isAuth= async (req,res,next)=>{
-    const {token}=req.cookies;
+    const cookie=req.cookies;
+    const {token}=cookie;
 
     if(!token)
     {
-        throw "not registered";
+      return res.status(400).send( "not registered");
     }
 
-    const decoded=jwt.verify(token,"RENTLINK210")
+    const decoded= await jwt.verify(token,"RENTLINL2110")
     const {_id}=decoded
 
-    req.user= await User.findOne({_id:_id});
+    const user= await User.findOne({_id:_id})
+
+    if(!user)
+    {
+        return res.status(400).res("USer not Founnd or user not authorised")
+    }
+    req.user= user;
     next();
 }
 
