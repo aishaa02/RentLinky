@@ -30,6 +30,7 @@ app.get("/profile",profileRouter)
 app.post("/addHouse",homeRouter);
 app.get("/getHouses",getHouseRouter)
 app.put("/updateHouse/:id",homeRouter)
+app.post("/deleteHouse/:id",homeRouter)
 
 
 // app.use(errorMiddleware)

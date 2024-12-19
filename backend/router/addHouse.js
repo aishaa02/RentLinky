@@ -40,5 +40,24 @@ homeRouter.put("/updateHouse/:id", isAuth, async (req,res)=>{
    
 })
 
+homeRouter.post("/deleteHouse/:id", isAuth, async (req,res)=>{
+  const {id}=req.params;
+
+  const job=await House.findById(id);
+
+  if(!job)
+  {
+    return res.json({
+      message:"ooops job not found"
+    })
+  }
+
+  await job.deleteOne();
+
+  res.status(200).json({
+    message:"Job deleted sucessfully"
+  })
+})
+
 export default homeRouter;
 
