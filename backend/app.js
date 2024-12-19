@@ -31,6 +31,8 @@ app.post("/addHouse",homeRouter);
 app.get("/getHouses",getHouseRouter)
 app.put("/updateHouse/:id",homeRouter)
 app.post("/deleteHouse/:id",homeRouter)
+app.post("/filterHouse",getHouseRouter)
+app.post("/logout",AuthRouter)
 
 
 // app.use(errorMiddleware)

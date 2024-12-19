@@ -4,12 +4,20 @@ import { House } from "../models/landLord.js";
 const homeRouter=express.Router();
 
 homeRouter.post("/addHouse", isAuth, async (req,res)=>{
-    const homeId=req.user._id;
+    const {homeId,role}=req.user;
 
-    const {hometype,location,bedrooms,beds,bathrooms,amenities,expired}=req.body;
+
+    if(role==="Tenent")
+    {
+      return res.status(400).json({
+        message:"Tenent cannot have access to add the house"
+      })
+    }
+
+    const {hometype,location,bedrooms,beds,bathrooms,amenities,expired,price}=req.body;
 
     const newHouse=new House({
-        homeId,hometype,location,bedrooms,beds,bathrooms,amenities,expired
+        homeId,hometype,location,bedrooms,beds,bathrooms,amenities,expired,price
     })
 
     await newHouse.save();
@@ -20,7 +28,14 @@ homeRouter.post("/addHouse", isAuth, async (req,res)=>{
 })
 
 homeRouter.put("/updateHouse/:id", isAuth, async (req,res)=>{
-  const landlord_id=req.user._id;
+  const {landlord_id, role}=req.user;
+
+  if(role=="Tenent")
+    {
+      return res.status(400).json({
+        message:"Tenent cannot have access to add the house"
+      })
+    }
 
   const {id}=req.params;
 
@@ -42,6 +57,14 @@ homeRouter.put("/updateHouse/:id", isAuth, async (req,res)=>{
 
 homeRouter.post("/deleteHouse/:id", isAuth, async (req,res)=>{
   const {id}=req.params;
+  const {role}=req.user;
+
+  if(role=="Tenent")
+    {
+      return res.status(400).json({
+        message:"Tenent cannot have access to add the house"
+      })
+    }
 
   const job=await House.findById(id);
 

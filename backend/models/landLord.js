@@ -36,6 +36,10 @@ const HouseSchema=new mongoose.Schema({
         type:Boolean,
         required:true,
         default:true
+    },
+    price:{
+        type:Number,
+        required:true
     }
 })
 
