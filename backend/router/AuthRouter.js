@@ -60,11 +60,9 @@ AuthRouter.post("/login", async  (req,res)=>{
 
 AuthRouter.post("/logout", async (req, res) => {
   res.cookie("RENTLINL2110", "", {
-    httpOnly: true,    // Ensures it's only accessible on the server
-    expires: new Date(0), // Set to expire immediately
-    path: "/",         // Clears the cookie for the entire app
-    secure: false,     // If not using HTTPS during development
-    sameSite: "lax",   // Controls how cookies are sent
+    httpOnly: true,    
+    expires: new Date(0),
+  
   });
 
   return res.status(200).json({
