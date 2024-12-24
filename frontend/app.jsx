@@ -15,7 +15,6 @@ import HouseDescription from './components/landlord/House-Description.jsx'
 import HouseFloorplan from './components/landlord/House-Floor-plan.jsx'
 import HouseLocation from './components/landlord/House-Location.jsx'
 import HouseStructure from './components/landlord/House-Structure.jsx'
-import Card from "./components/Home/card.jsx"
 import HouseDetails from './components/tenent/HouseDetails.jsx'
 import HouseDetailsDesign from './components/tenent/HouseDetailsDesign.jsx'
 import searchHouse from './components/tenent/searchHouse.jsx'
@@ -31,8 +30,7 @@ const App = () => {
         <Route path='/registration' element={<Registration/>} />
         <Route path='/' element={<Hero/>} />
         <Route path='/tenent/getHouse' element={<HouseDetails/>} />
-        <Route path='/tenent/displayHouse' element={<HouseDetailsDesign/>} />
-        <Route path='/tenent/HouseCard' element={<Card/>} />
+        <Route path='/tenent/displayHouse/:id' element={<HouseDetailsDesign/>} />
         <Route path='/landlord/Host' element={<Host/>} />
         <Route path='/landlord/addHouse' element={<Hero/>} />
         <Route path='/landlord/getHouse' element={<HostedHouse/>} />

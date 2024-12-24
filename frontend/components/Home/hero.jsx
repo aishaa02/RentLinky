@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "./Card";
+import Card from "./card.jsx";
 
 const Hero = () => {
   const [homes, setHomes] = useState([]);

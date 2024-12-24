@@ -110,7 +110,7 @@ const Login = () => {
             setSuccess(response.data.message);
             setError('');
             // Redirect to the profile page or dashboard
-            window.location.href = "/profile";
+            window.location.href = "/";
         } catch (err) {
             if (err.response) {
                 // Backend responded with an error (4xx or 5xx)
