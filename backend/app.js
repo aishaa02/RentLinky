@@ -17,8 +17,19 @@ const result = dotenv.config({ path: "./.env" });
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(cors())
 
+app.use(cors({
+    origin: "http://localhost:5173", // Replace with your frontend URL
+    credentials: true // Enable credentials (cookies)
+}));
+
+app.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+     });
 
 app.get("/",(req,res)=>{
     res.send("Hello!")

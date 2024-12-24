@@ -11,7 +11,7 @@ const isAuth= async (req,res,next)=>{
       return res.status(400).send( "please log in");
     }
 
-    const decoded= jwt.verify(token,"RENTLINL2110")
+    const decoded= jwt.verify(token,process.env.JWT_SECRET || "RENTLINL2110")
     const {_id}=decoded
 
     const user= await User.findOne({_id:_id})

@@ -33,30 +33,41 @@ AuthRouter.post("/registration",async (req,res)=>{
 
 })
 
-AuthRouter.post("/login", async  (req,res)=>{
-    const {email,password}=req.body;
+AuthRouter.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-    const user=await User.findOne({email:email})
+  const user = await User.findOne({ email });
 
-    if(!user)
-    {
-      return res.status(400).send("invalid email or password")
-    }
+  if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
+  }
 
-    const isPasswordMatched= await bcrypt.compare(password,user.password)
+  const isPasswordMatched = await bcrypt.compare(password, user.password);
 
-    if(!isPasswordMatched)
-    {
-       return res.status(400).send("invalid email or password")
-    }
+  if (!isPasswordMatched) {
+      return res.status(400).json({ message: "Invalid email or password" });
+  }
 
-    const token=jwt.sign({_id:user._id},"RENTLINL2110");
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET || "RENTLINK2110");
 
-    res.cookie("token",token);
-    res.status(200).send("user loged in successfully")
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: 'lax', // Adjust based on frontend and backend setup
+    secure: false, // Set to true if using HTTPS
+});
 
+  res.status(200).json({
+      message: "User logged in successfully",
+      user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+      },
+      token,
+  });
+});
 
-})
 
 AuthRouter.post("/logout", async (req, res) => {
   res.cookie("RENTLINL2110", "", {
