@@ -15,7 +15,7 @@ import HouseDescription from './components/landlord/House-Description.jsx'
 import HouseFloorplan from './components/landlord/House-Floor-plan.jsx'
 import HouseLocation from './components/landlord/House-Location.jsx'
 import HouseStructure from './components/landlord/House-Structure.jsx'
-import HouseCard from './components/tenent/HouseCard.jsx'
+import Card from "./components/Home/card.jsx"
 import HouseDetails from './components/tenent/HouseDetails.jsx'
 import HouseDetailsDesign from './components/tenent/HouseDetailsDesign.jsx'
 import searchHouse from './components/tenent/searchHouse.jsx'
@@ -29,10 +29,10 @@ const App = () => {
       <Routes>
         <Route path='/login' element={<Login/>} />
         <Route path='/registration' element={<Registration/>} />
-        <Route path='/hero' element={<Hero/>} />
+        <Route path='/' element={<Hero/>} />
         <Route path='/tenent/getHouse' element={<HouseDetails/>} />
         <Route path='/tenent/displayHouse' element={<HouseDetailsDesign/>} />
-        <Route path='/tenent/HouseCard' element={<HouseCard/>} />
+        <Route path='/tenent/HouseCard' element={<Card/>} />
         <Route path='/landlord/Host' element={<Host/>} />
         <Route path='/landlord/addHouse' element={<Hero/>} />
         <Route path='/landlord/getHouse' element={<HostedHouse/>} />
@@ -44,6 +44,7 @@ const App = () => {
         <Route path='/landlord/Structure' element={<HouseStructure/>} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
+      <Toaster/>
       <Footer/>
     </Router>
 
