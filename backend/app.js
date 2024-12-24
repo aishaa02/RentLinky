@@ -8,7 +8,7 @@ import AuthRouter from "./router/AuthRouter.js";
 import profileRouter from "./router/profile.js"
 import homeRouter from "./router/addHouse.js";
 import getHouseRouter from "./router/getHomes.js"
-
+import detailsHouserouter from "./router/getHouseDetails.js"
 
 const app=express();
 
@@ -44,7 +44,7 @@ app.put("/updateHouse/:id",homeRouter)
 app.post("/deleteHouse/:id",homeRouter)
 app.post("/filterHouse",getHouseRouter)
 app.post("/logout",AuthRouter)
-
+app.get("/tenent/displayHouse/:id",detailsHouserouter)
 
 // app.use(errorMiddleware)
 database().then(()=>{
