@@ -9,16 +9,18 @@ import Navbar from "./components/navbar.jsx"
 import Footer from './components/footer.jsx'
 import Host from './components/landlord/Host.jsx'
 import HostedHouse from './components/landlord/HostedHouse.jsx'
-import {HouseAminities} from './components/landlord/HouseAminities.jsx'
+import HouseAminities from './components/landlord/HouseAminities.jsx'
 import HouseBathrooms from './components/landlord/House-Bathrooms.jsx'
 import HouseDescription from './components/landlord/House-Description.jsx'
-import HouseFloorplan from './components/landlord/House-Floor-plan.jsx'
+import HouseTitle from './components/landlord/House-title.jsx'
 import HouseLocation from './components/landlord/House-Location.jsx'
-import HouseStructure from './components/landlord/House-Structure.jsx'
+import HousePrice from './components/landlord/House-Price.jsx'
 import HouseDetails from './components/tenent/HouseDetails.jsx'
 import HouseDetailsDesign from './components/tenent/HouseDetailsDesign.jsx'
 import searchHouse from './components/tenent/searchHouse.jsx'
 import NotFound from './components/notFound.jsx'
+import PublishHouse from './components/landlord/publishHouse.jsx'
+import Housedis from './components/landlord/house-dis.jsx'
 
 const App = () => {
   return <>
@@ -32,14 +34,16 @@ const App = () => {
         <Route path='/tenent/getHouse' element={<HouseDetails/>} />
         <Route path='/tenent/displayHouse/:id' element={<HouseDetailsDesign/>} />
         <Route path='/landlord/Host' element={<Host/>} />
-        <Route path='/landlord/addHouse' element={<Hero/>} />
         <Route path='/landlord/getHouse' element={<HostedHouse/>} />
         <Route path='/landlord/Aminities' element={<HouseAminities/>} />
         <Route path='/landlord/Bathrooms' element={<HouseBathrooms/>} />
         <Route path='/landlord/Description' element={<HouseDescription/>} />
-        <Route path='/landlord/FloorPlan' element={<HouseFloorplan/>} />
+        <Route path='/landlord/HouseTitle' element={<HouseTitle/>} />
         <Route path='/landlord/HouseLocation' element={<HouseLocation/>} />
-        <Route path='/landlord/Structure' element={<HouseStructure/>} />
+        <Route path='/landlord/HousePrice' element={<HousePrice/>} />
+        <Route path='/landlord/PublishHouse' element={<PublishHouse/>} />
+        <Route path='/landlord/Housedis' element={<Housedis/>} />
+
         <Route path='*' element={<NotFound/>} />
       </Routes>
       <Toaster/>
