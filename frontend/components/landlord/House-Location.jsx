@@ -18,7 +18,7 @@ const HouseLocation = () => {
     setHostDetails((prev) => ({ ...prev, location }));
 
     // Navigate to the next step
-    navigate('/landlord/HouseDetails'); // Next page route
+    navigate('/landlord/Description'); // Next page route
   };
 
   return (
