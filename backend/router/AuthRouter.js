@@ -6,32 +6,30 @@ import isAuth from "../middlewares/auth.js";
 
 const AuthRouter=express.Router();
 
-AuthRouter.post("/registration",async (req,res)=>{
-    try{
-      const pass =req.body.password;
-      const passwordhash= await bcrypt.hash(pass,10)
+AuthRouter.post("/registration", async (req, res) => {
+  console.log(req.body);  // Log the request body
 
-      const {name,email,password,role}=req.body;
-     
-      
+  try {
+    const pass = req.body.password;
+    const passwordhash = await bcrypt.hash(pass, 10);
+    const { name, email, password, role } = req.body;
+ 
+    console.log(name,email,password,role)
+    const user = new User({
+      name,
+      email,
+      password: passwordhash,
+      role
+    });
 
-      const user=new User({
-        name,
-        email,
-        password:passwordhash,
-        role
-      })
+    await user.save();
+    res.status(200).json("User registered successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Error during registration");
+  }
+});
 
-
-      await user.save();
-  
-      res.status(200).send("USer reistered successfully");
-    }
-    catch(err){
-        res.send(err)
-    }
-
-})
 
 AuthRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -56,16 +54,16 @@ AuthRouter.post("/login", async (req, res) => {
     secure: false, // Set to true if using HTTPS
 });
 
-  res.status(200).json({
-      message: "User logged in successfully",
-      user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          role: user.role,
-      },
-      token,
-  });
+res.status(200).json({
+  message: "User logged in successfully",
+  user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+  },
+});
+
 });
 
 
