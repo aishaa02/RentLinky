@@ -34,9 +34,14 @@ const Navbar = () => {
                 </Link>
               ) : user.role === "Landlord" ? (
                 // Landlord role-specific link
+                <>
                 <Link to="/landlord/Host" className="text-[#118B50]">
                   Host House
                 </Link>
+                <Link to="/landlord/getHouse" className="text-[#118B50]">
+                  Hosted Houses
+                </Link>
+              </>
               ) : null}
               <Link to="/logout" className="text-[#118B50]">Logout</Link>
             </>

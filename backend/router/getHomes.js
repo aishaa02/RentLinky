@@ -2,6 +2,7 @@ import express from "express"
 import isAuth from "../middlewares/auth.js";
 import { House } from "../models/landLord.js";
 
+
 const getHouseRouter=express.Router();
 
 getHouseRouter.get("/getHouses",isAuth, async (req,res)=>{
@@ -69,6 +70,30 @@ getHouseRouter.post("/filterHouse", isAuth, async (req, res) => {
 });
 
 
+getHouseRouter.get("/landlordHouse", isAuth, async (req,res)=>{
 
+     const user=req.user;
+
+     if(user.role == "Tenant")
+     {
+        return res.status(400).json({
+            message:"Tenant cannot view landlords homes details"
+        })
+     }
+
+     const landlordHouses=await House.find({homeId:user._id})
+
+     if(!landlordHouses)
+     {
+        return res.status(200).json({
+            message:"No homes founded. Please Hose Houses"
+        })
+     }
+   
+     res.status(200).json({
+        landlordHouses
+     })
+
+})
 
 export default getHouseRouter;

@@ -98,7 +98,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const { setIsauthorised, setUser } = useContext(context);
-    console.log("hiii")
+   // console.log("hiii")
     // console.log('setIsauthorised:', setIsauthorised);
     //  console.log('setUser:', setUser);
 
@@ -118,7 +118,7 @@ const Login = () => {
             setSuccess(response.data.message);
              setIsauthorised(true)
              setUser(response.data.user);
-             console.log('User data from response:', response.data.user);
+             //console.log('User data from response:', response.data.user);
 
             setError('');
             // Redirect to the profile page or dashboard

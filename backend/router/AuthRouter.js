@@ -46,7 +46,7 @@ AuthRouter.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password" });
   }
 
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET || "RENTLINK2110");
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET || "RENTLINK2110",{expiresIn:"3h"});
 
   res.cookie("token", token, {
     httpOnly: true,

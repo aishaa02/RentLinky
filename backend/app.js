@@ -45,6 +45,8 @@ app.post("/deleteHouse/:id",homeRouter)
 app.post("/filterHouse",getHouseRouter)
 app.post("/logout",AuthRouter)
 app.get("/tenent/displayHouse/:id",detailsHouserouter)
+app.get("/landlordHouse",getHouseRouter)
+
 
 // app.use(errorMiddleware)
 database().then(()=>{
