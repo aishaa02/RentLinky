@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import rentlink from "../assets/rentlink.jpg"; // Rentlink logo
+import rentlink from "../assets/rentlink.jpg"; // RentLink logo
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    role: "", // Added role to formData
+    role: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  
+  const navigate = useNavigate();
   const validateEmail = (email) => {
     // Simple email validation regex
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -21,12 +25,35 @@ const Registration = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError(null); // Clear error messages on change
+    setSuccessMessage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., API call)
-    console.log("Form submitted:", formData);
+    setError(null);
+    setSuccessMessage(null);
+
+    try {
+      const response = await fetch("http://localhost:3000/registration", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to register user");
+      }
+
+      setSuccessMessage("User registered successfully!");
+      navigate('/login');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -35,7 +62,7 @@ const Registration = () => {
         <div className="logo-container flex justify-center mb-4">
           <img
             src={rentlink}
-            alt="rentlink logo"
+            alt="RentLink Logo"
             className="h-20 w-20 object-cover"
           />
         </div>
@@ -43,6 +70,9 @@ const Registration = () => {
         <h2 className="text-center text-2xl font-bold mb-6" style={{ color: "#118B50" }}>
           Register
         </h2>
+
+        {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+        {successMessage && <div className="text-green-500 text-center mb-4">{successMessage}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name Input */}
@@ -56,16 +86,6 @@ const Registration = () => {
               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
               required
             />
-            <span className={`absolute right-4 top-3 text-sm ${
-              formData.name.length >= 2 && formData.name.length <= 30
-                ? "text-[#118B50]"
-                : "text-red-500"
-            }`}>
-              {formData.name.length > 0 &&
-                (formData.name.length >= 2 && formData.name.length <= 30
-                  ? "✔"
-                  : "❌")}
-            </span>
           </div>
 
           {/* Email Input */}
@@ -79,16 +99,6 @@ const Registration = () => {
               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
               required
             />
-            <span
-              className={`absolute right-4 top-3 text-sm ${
-                validateEmail(formData.email)
-                  ? "text-[#118B50]"
-                  : "text-red-500"
-              }`}
-            >
-              {formData.email.length > 0 &&
-                (validateEmail(formData.email) ? "✔" : "❌")}
-            </span>
           </div>
 
           {/* Password Input */}
@@ -102,16 +112,13 @@ const Registration = () => {
               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
               required
             />
-            <span
-              className={`absolute right-4 top-3 text-sm ${
-                formData.password.length >= 6
-                  ? "text-[#118B50]"
-                  : "text-red-500"
-              }`}
+            <button
+              type="button"
+              className="absolute right-3 top-3 text-sm text-gray-600"
+              onClick={() => setShowPassword(!showPassword)}
             >
-              {formData.password.length > 0 &&
-                (formData.password.length >= 6 ? "✔" : "❌")}
-            </span>
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
 
           {/* Role Selection */}
@@ -123,7 +130,7 @@ const Registration = () => {
               onClick={() => setFormData({ ...formData, role: "Tenant" })}
             >
               <img
-                src="https://tse3.mm.bing.net/th?id=OIP.Dk8azl7qJ732wKnSxZxZHwHaHa&pid=Api&P=0&h=180"
+                src="https://example.com/tenant-icon.png"
                 alt="Tenant"
                 className="h-20 w-20"
               />
@@ -136,7 +143,7 @@ const Registration = () => {
               onClick={() => setFormData({ ...formData, role: "Landlord" })}
             >
               <img
-                src="https://tse1.mm.bing.net/th?id=OIP.OdfHmGiDI_wLhpMkditjlQHaI9&pid=Api&P=0&h=180"
+                src="https://example.com/landlord-icon.png"
                 alt="Landlord"
                 className="h-20 w-20"
               />

@@ -27,6 +27,7 @@ const App = () => {
       
     <Router>
       <Navbar/>
+      <div className="container mx-auto mt-8">
       <Routes>
         <Route path='/login' element={<Login/>} />
         <Route path='/registration' element={<Registration/>} />
@@ -43,9 +44,9 @@ const App = () => {
         <Route path='/landlord/HousePrice' element={<HousePrice/>} />
         <Route path='/landlord/PublishHouse' element={<PublishHouse/>} />
         <Route path='/landlord/Housedis' element={<Housedis/>} />
-
         <Route path='*' element={<NotFound/>} />
       </Routes>
+    </div>
       <Toaster/>
       <Footer/>
     </Router>

@@ -86,15 +86,23 @@
 // export default Login;
 
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import rentlink from "../assets/rentlink.jpg";
+import { useNavigate } from 'react-router-dom';
+import { context } from "../main.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const { setIsauthorised, setUser } = useContext(context);
+    console.log("hiii")
+    // console.log('setIsauthorised:', setIsauthorised);
+    //  console.log('setUser:', setUser);
+
+     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -108,9 +116,13 @@ const Login = () => {
             });
 
             setSuccess(response.data.message);
+             setIsauthorised(true)
+             setUser(response.data.user);
+             console.log('User data from response:', response.data.user);
+
             setError('');
             // Redirect to the profile page or dashboard
-            window.location.href = "/";
+            navigate('/');
         } catch (err) {
             if (err.response) {
                 // Backend responded with an error (4xx or 5xx)
