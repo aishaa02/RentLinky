@@ -21,6 +21,8 @@ import searchHouse from './components/tenent/searchHouse.jsx'
 import NotFound from './components/notFound.jsx'
 import PublishHouse from './components/landlord/publishHouse.jsx'
 import Housedis from './components/landlord/house-dis.jsx'
+import Profile from "./components/profile.jsx"
+
 
 const App = () => {
   return <>
@@ -44,6 +46,7 @@ const App = () => {
         <Route path='/landlord/HousePrice' element={<HousePrice/>} />
         <Route path='/landlord/PublishHouse' element={<PublishHouse/>} />
         <Route path='/landlord/Housedis' element={<Housedis/>} />
+        <Route path="/profile" element={<Profile/>}/>
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

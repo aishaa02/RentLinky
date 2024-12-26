@@ -24,6 +24,12 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
         enum:["Tenant","Landlord"]
+    },
+    contactNumber:{
+        type:Number
+    },
+    address:{
+        type:String
     }
 },
 {

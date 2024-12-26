@@ -37,7 +37,7 @@ app.get("/",(req,res)=>{
 
 app.post("/registration",AuthRouter)
 app.post("/login",AuthRouter)
-app.get("/profile",profileRouter)
+app.get("/userProfile",profileRouter)
 app.post("/addHouse",homeRouter);
 app.get("/getHouses",getHouseRouter)
 app.put("/updateHouse/:id",homeRouter)
@@ -46,7 +46,7 @@ app.post("/filterHouse",getHouseRouter)
 app.post("/logout",AuthRouter)
 app.get("/tenent/displayHouse/:id",detailsHouserouter)
 app.get("/landlordHouse",getHouseRouter)
-
+app.put("/profile/update",profileRouter)
 
 // app.use(errorMiddleware)
 database().then(()=>{
