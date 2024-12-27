@@ -24,7 +24,7 @@ import Housedis from './components/landlord/house-dis.jsx'
 import ProfileUpdate from "./components/profileUpdate.jsx"
 import Profile from './components/profile.jsx'
 import Book from './components/tenent/booking.jsx'
-
+import LandlordHouseDetails from "./components/landlord/hostedHouseDetails.jsx"
 
 
 const App = () => {
@@ -52,6 +52,8 @@ const App = () => {
         <Route path="/profileUpdate" element={<ProfileUpdate/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/bookHouse/:id' element={<Book/>}/>
+        <Route path='/houseDetails/:houseId' element={<LandlordHouseDetails/>}/>
+
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

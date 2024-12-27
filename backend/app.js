@@ -11,7 +11,6 @@ import getHouseRouter from "./router/getHomes.js"
 import detailsHouserouter from "./router/getHouseDetails.js"
 import bookingRouter from "./router/booking.js";
 
-
 const app=express();
 
 const result = dotenv.config({ path: "./.env" });
@@ -50,6 +49,9 @@ app.get("/tenent/displayHouse/:id",detailsHouserouter)
 app.get("/landlordHouse",getHouseRouter)
 app.put("/profile/update",profileRouter)
 app.post("/bookHouse/:id",bookingRouter)
+app.get("/houseDetails/:houseId",detailsHouserouter)
+
+
 
 // app.use(errorMiddleware)
 database().then(()=>{
