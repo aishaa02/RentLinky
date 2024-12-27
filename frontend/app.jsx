@@ -23,6 +23,9 @@ import PublishHouse from './components/landlord/publishHouse.jsx'
 import Housedis from './components/landlord/house-dis.jsx'
 import ProfileUpdate from "./components/profileUpdate.jsx"
 import Profile from './components/profile.jsx'
+import Book from './components/tenent/booking.jsx'
+
+
 
 const App = () => {
   return <>
@@ -48,6 +51,7 @@ const App = () => {
         <Route path='/landlord/Housedis' element={<Housedis/>} />
         <Route path="/profileUpdate" element={<ProfileUpdate/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/bookHouse/:id' element={<Book/>}/>
         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>

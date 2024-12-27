@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const HouseDetailsDesign = () => {
   const { id } = useParams(); // Get the house ID from the URL
   const [house, setHouse] = useState(null);
+  const [error, setError] = useState(null); // For storing errors
+  const navigate = useNavigate(); // Correct usage of useNavigate hook
 
   useEffect(() => {
     // Fetch house data from your backend using the ID
@@ -12,14 +14,18 @@ const HouseDetailsDesign = () => {
       try {
         const response = await axios.get(`http://localhost:3000/tenent/displayHouse/${id}`, { withCredentials: true });
         setHouse(response.data); // Set the fetched house data
-        console.log(response.data);
       } catch (error) {
+        setError("Error fetching house data. Please try again later."); // Handle error
         console.error('Error fetching house data:', error);
       }
     };
 
     fetchHouseData();
   }, [id]);
+
+  if (error) {
+    return <p>{error}</p>; // Display error message if there was an issue fetching the data
+  }
 
   if (!house) {
     return <p>Loading...</p>; // Display loading until data is available
@@ -35,6 +41,10 @@ const HouseDetailsDesign = () => {
     amenities,
     images,
   } = house;
+
+  const handleBook = () => {
+    navigate(`/bookHouse/${id}`); // Correct way to navigate to the booking page
+  };
 
   return (
     <div className="p-8">
@@ -82,9 +92,13 @@ const HouseDetailsDesign = () => {
       </div>
 
       {/* Rating - Placeholder for now */}
-      <div className="mb-6">
-        <h3 className="text-xl font-semibold mb-2">Rating</h3>
-        <p>No rating available for now</p>
+      <div className='booking'>
+        <button 
+          onClick={handleBook} 
+          className="bg-[#118B50] text-white px-6 py-3 rounded-md hover:bg-[#37A772]"
+        >
+          Book Now
+        </button>
       </div>
     </div>
   );

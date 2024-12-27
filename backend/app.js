@@ -9,6 +9,8 @@ import profileRouter from "./router/profile.js"
 import homeRouter from "./router/addHouse.js";
 import getHouseRouter from "./router/getHomes.js"
 import detailsHouserouter from "./router/getHouseDetails.js"
+import bookingRouter from "./router/booking.js";
+
 
 const app=express();
 
@@ -47,6 +49,7 @@ app.post("/logout",AuthRouter)
 app.get("/tenent/displayHouse/:id",detailsHouserouter)
 app.get("/landlordHouse",getHouseRouter)
 app.put("/profile/update",profileRouter)
+app.post("/bookHouse/:id",bookingRouter)
 
 // app.use(errorMiddleware)
 database().then(()=>{
