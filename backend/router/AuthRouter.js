@@ -68,9 +68,9 @@ res.status(200).json({
 
 
 AuthRouter.post("/logout", async (req, res) => {
-  res.cookie("RENTLINL2110", "", {
+  res.cookie("token", "", {
     httpOnly: true,    
-    expires: new Date(0),
+    expires: new Date(Date.now()),
   
   });
 
