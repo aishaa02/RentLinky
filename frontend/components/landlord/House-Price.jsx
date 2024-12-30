@@ -17,7 +17,7 @@ const HousePrice = () => {
     setHostDetails((prev) => ({ ...prev, price }));
 
     // Navigate to the next step
-    navigate('/landlord/PublishHouse'); // Update with the actual next step route
+    navigate('/landlord/HouseImages'); // Update with the actual next step route
   };
 
   return (

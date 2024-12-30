@@ -93,7 +93,7 @@ const Hero = () => {
               beds={home.beds}
               bathrooms={home.bathrooms}
               price={home.price || "Price not available"} // Fallback for missing price
-              coverImage={home.images.coverImage} // Pass only coverImage to Card
+              coverImage={home.coverImage} // Pass only coverImage to Card
             />
           ))}
         </div>

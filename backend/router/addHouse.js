@@ -85,15 +85,104 @@
 // export default homeRouter;
 
 
+// import express from "express";
+// import isAuth from "../middlewares/auth.js";
+// import { House } from "../models/landLord.js";
+
+// const homeRouter = express.Router();
+
+// // Add House
+// homeRouter.post("/addHouse", isAuth, async (req, res) => {
+//   const { _id: homeId, role } = req.user;
+
+//   if (role === "Tenant") {
+//     return res.status(400).json({
+//       message: "Tenant cannot have access to add the house",
+//     });
+//   }
+
+//   const {
+//     hometype,
+//     location,
+//     bedrooms,
+//     beds,
+//     bathrooms,
+//     amenities,
+//     expired,
+//     price,
+//     title,
+//     description,
+//   } = req.body;
+
+//   // Create a new house
+//   const newHouse = new House({
+//     homeId,
+//     hometype,
+//     location,
+//     bedrooms,
+//     beds,
+//     bathrooms,
+//     amenities,
+//     expired,
+//     price,
+//     title,
+//     description,
+//   });
+
+//   try {
+//     await newHouse.save();
+
+//     res.status(200).json({
+//       message: "New house added successfully",
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({
+//       message: "Error while adding house",
+//       error: error.message,
+//     });
+//   }
+// });
+
+
+
 import express from "express";
+import multer from "multer";
+import path from "path";
 import isAuth from "../middlewares/auth.js";
 import { House } from "../models/landLord.js";
 
 const homeRouter = express.Router();
 
+// Multer setup for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Directory where files will be stored
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png/;
+  const isValid = allowedTypes.test(path.extname(file.originalname).toLowerCase()) && 
+                  allowedTypes.test(file.mimetype);
+  if (isValid) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only JPEG, JPG, and PNG files are allowed"));
+  }
+};
+
+const upload = multer({ storage, fileFilter });
+
 // Add House
-homeRouter.post("/addHouse", isAuth, async (req, res) => {
+homeRouter.post("/addHouse", isAuth, upload.single("coverImage"), async (req, res) => {
   const { _id: homeId, role } = req.user;
+  
+  console.log(req.body);
+  console.log(req.file);
 
   if (role === "Tenant") {
     return res.status(400).json({
@@ -114,26 +203,35 @@ homeRouter.post("/addHouse", isAuth, async (req, res) => {
     description,
   } = req.body;
 
-  // Create a new house
-  const newHouse = new House({
-    homeId,
-    hometype,
-    location,
-    bedrooms,
-    beds,
-    bathrooms,
-    amenities,
-    expired,
-    price,
-    title,
-    description,
-  });
+  
+
+  if (!req.file) {
+    return res.status(400).json({ message: "Cover image is required" });
+  }
+
+const imagePath = `/uploads/${req.file.filename}`; // Correct usage: access file via req.file
+
+// Pass the imagePath to the house data being saved
+const newHouse = new House({
+  hometype,
+  location,
+  bedrooms,
+  beds,
+  bathrooms,
+  amenities,
+  description,
+  title,
+  price,
+  coverImage: imagePath,  // Save the relative path to the database
+});
+
 
   try {
     await newHouse.save();
 
     res.status(200).json({
       message: "New house added successfully",
+      house: newHouse,
     });
   } catch (error) {
     console.error(error);
@@ -143,6 +241,8 @@ homeRouter.post("/addHouse", isAuth, async (req, res) => {
     });
   }
 });
+
+
 
 // Update House
 homeRouter.put("/updateHouse/:id", isAuth, async (req, res) => {

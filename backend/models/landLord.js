@@ -128,8 +128,6 @@
 
 // export const House = mongoose.model("House", HouseSchema);
 
-
-
 import mongoose from "mongoose";
 
 const HouseSchema = new mongoose.Schema({
@@ -157,13 +155,10 @@ const HouseSchema = new mongoose.Schema({
   },
   bathrooms: {
     type: [String],
+    enum: ["Private & Unattached", "Private with shared some peoples", "Shared or common"],
     required: true,
-    enum: [
-      "Private & Unattached",
-      "Private with shared some peoples",
-      "Shared or common",
-    ], // Restrict to allowed values
   },
+  
   amenities: {
     type: [String],
     required: true,
@@ -185,30 +180,33 @@ const HouseSchema = new mongoose.Schema({
   expired: {
     type: Boolean,
     required: true,
-    default: false, // Set default to false (active listing)
+    default: false,
   },
   price: {
     type: Number,
     required: true,
-    min: 0, // Price must be a positive value
+    min: 0,
   },
   title: {
     type: String,
-    trim: true, // Remove extra spaces
+    trim: true, 
   },
   description: {
     type: String,
-    trim: true, // Remove extra spaces
+    trim: true, 
   },
-  images: {
-    coverImage: {
-      type: String,
-    },
-    otherImages: {
-      type: [String], // Array of strings to store additional images
-      
+  coverImage: {
+    type: String,
+    required: true, // Cover image is mandatory
+    validate: {
+      validator: function (value) {
+        // Basic validation to check if it's a valid URL format
+        return /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i.test(value);
+      },
+      message: "Invalid cover image URL.",
     },
   },
 });
 
 export const House = mongoose.model("House", HouseSchema);
+

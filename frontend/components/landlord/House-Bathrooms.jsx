@@ -30,8 +30,11 @@ const HouseBathrooms = () => {
     }
 
     // Update the bathrooms in the context
-    setHostDetails((prev) => ({ ...prev, bathrooms: selectedBathroomTypes }));
-
+    setHostDetails((prev) => ({
+      ...prev,
+      bathrooms: selectedBathroomTypes.map((type) => type.toString()),
+    }));
+    
     // Navigate to the next step
     navigate('/landlord/Aminities');
   };

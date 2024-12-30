@@ -25,6 +25,64 @@
 //     </React.StrictMode>
 // )
 
+// import React, { createContext, useState } from 'react';
+// import ReactDOM from 'react-dom/client';
+// import App from './app.jsx';
+
+// // Create the context
+// export const context = createContext({
+//   isAuthorised: false,
+//   user: {},
+//   hostDetails: {
+//     houseType: '',
+//     location: '',
+//     bedrooms: 0,
+//     beds: 0,
+//     bathrooms: [],
+//     amenities: [],
+//     description: '',
+//     title: '',
+//     price: 0,
+//   }, // Set initial values for host details
+// });
+
+// const Appwrapper = () => {
+//   const [isAuthorised, setIsauthorised] = useState(false);
+//   const [user, setUser] = useState({});
+//   const [hostDetails, setHostDetails] = useState({
+//     houseType: '',
+//     location: '',
+//     bedrooms: 0,
+//     beds: 0,
+//     bathrooms: [],
+//     amenities: [],
+//     description: '',
+//     title: '',
+//     price: 0,    
+//   });
+
+//   return (
+//     <context.Provider
+//       value={{
+//         isAuthorised,
+//         setIsauthorised,
+//         user,
+//         setUser,
+//         hostDetails,
+//         setHostDetails, // Add setter for hostDetails
+//       }}
+//     >
+//       <App/>
+//     </context.Provider>
+//   );
+// };
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <React.StrictMode>
+//     <Appwrapper />
+//   </React.StrictMode>
+// );
+
 import React, { createContext, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app.jsx';
@@ -43,7 +101,8 @@ export const context = createContext({
     description: '',
     title: '',
     price: 0,
-  }, // Set initial values for host details
+    coverImage: null, // Added field for cover image
+  },
 });
 
 const Appwrapper = () => {
@@ -59,8 +118,7 @@ const Appwrapper = () => {
     description: '',
     title: '',
     price: 0,
-    images: { coverImage: '', otherImages: [] },
-    
+    coverImage: null, // Initialize with null
   });
 
   return (
@@ -71,10 +129,10 @@ const Appwrapper = () => {
         user,
         setUser,
         hostDetails,
-        setHostDetails, // Add setter for hostDetails
+        setHostDetails,
       }}
     >
-      <App/>
+      <App />
     </context.Provider>
   );
 };

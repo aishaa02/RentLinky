@@ -36,8 +36,8 @@ app.get("/", (req, res) => {
 app.get("/",(req,res)=>{
     res.send("Hello!")
 })
-
 app.use('/uploads', express.static('uploads'));
+
 app.post("/registration",AuthRouter)
 app.post("/login",AuthRouter)
 app.get("/userProfile",profileRouter)
