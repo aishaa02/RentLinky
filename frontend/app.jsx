@@ -25,20 +25,20 @@ import ProfileUpdate from "./components/profileUpdate.jsx"
 import Profile from './components/profile.jsx'
 import Book from './components/tenent/booking.jsx'
 import LandlordHouseDetails from "./components/landlord/hostedHouseDetails.jsx"
-
+import HouseImages from './components/landlord/houseImages.jsx'
 
 const App = () => {
   return <>
-      
+      <div>
     <Router>
-      <Navbar/>
-      <div className="container mx-auto mt-8">
+      <Navbar className="bg-[#ededed]"/>
+      <div className="container mx-auto mt-8 ">
       <Routes>
         <Route path='/login' element={<Login/>} />
         <Route path='/registration' element={<Registration/>} />
         <Route path='/' element={<Hero/>} />
         <Route path='/tenent/getHouse' element={<HouseDetails/>} />
-        <Route path='/tenent/displayHouse/:id' element={<HouseDetailsDesign/>} />
+        <Route path='/tenant/displayHouse/:id' element={<HouseDetailsDesign/>} />
         <Route path='/landlord/Host' element={<Host/>} />
         <Route path='/landlord/getHouse' element={<HostedHouse/>} />
         <Route path='/landlord/Aminities' element={<HouseAminities/>} />
@@ -53,14 +53,14 @@ const App = () => {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/bookHouse/:id' element={<Book/>}/>
         <Route path='/houseDetails/:houseId' element={<LandlordHouseDetails/>}/>
-
-        <Route path='*' element={<NotFound/>} />
+        <Route path='/landlord/HouseImages' element={<HouseImages/>} />
+         <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
       <Toaster/>
       <Footer/>
     </Router>
-
+    </div>
     </>
   
 }

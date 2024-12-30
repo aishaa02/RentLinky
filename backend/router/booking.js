@@ -26,7 +26,7 @@ bookingRouter.post("/bookHouse/:id", isAuth, async (req, res) => {
     // Create a new booking with price and totalPrice
     const booking = new Booking({
       tenantId,
-      houseId:house._id,
+      houseId:id,
       landlordId: house.homeId, 
       bookingDate,
       duration,

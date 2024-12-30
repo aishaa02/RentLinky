@@ -171,7 +171,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white p-4 shadow-md">
+    <nav className="bg-[#ededed] p-4 shadow-md">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         {/* Home Link */}
         <Link to="/" className="text-xl font-bold text-[#118B50]">

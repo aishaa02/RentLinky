@@ -59,6 +59,8 @@ const Appwrapper = () => {
     description: '',
     title: '',
     price: 0,
+    images: { coverImage: '', otherImages: [] },
+    
   });
 
   return (
@@ -72,7 +74,7 @@ const Appwrapper = () => {
         setHostDetails, // Add setter for hostDetails
       }}
     >
-      <App />
+      <App/>
     </context.Provider>
   );
 };

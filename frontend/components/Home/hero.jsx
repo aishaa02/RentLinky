@@ -1,3 +1,7 @@
+
+
+
+
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
 // import Card from "./card.jsx";
@@ -18,14 +22,16 @@
 //   }, []);
 
 //   return (
-//     <section className="py-10 px-4">
-//       <h2 className="text-3xl font-bold text-black mb-6">
+//     <section className="py-12 px-6 bg-[#ededed]">
+//       <h2 className="text-4xl font-bold text-[#118B50] text-center mb-10">
 //         Explore Available Homes
 //       </h2>
 //       {homes.length === 0 ? (
-//         <p className="text-center text-gray-700">No homes available at the moment.</p>
+//         <p className="text-center text-gray-600 text-lg">
+//           No homes available at the moment. Please check back later.
+//         </p>
 //       ) : (
-//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+//         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 //           {homes.map((home) => (
 //             <Card
 //               key={home._id} // Use _id as the key
@@ -45,7 +51,6 @@
 // };
 
 // export default Hero;
-
 
 
 import React, { useEffect, useState } from "react";
@@ -68,7 +73,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="py-12 px-6 bg-[#f9f9f9]">
+    <section className="py-12 px-6 bg-[#ededed]">
       <h2 className="text-4xl font-bold text-[#118B50] text-center mb-10">
         Explore Available Homes
       </h2>
@@ -88,6 +93,7 @@ const Hero = () => {
               beds={home.beds}
               bathrooms={home.bathrooms}
               price={home.price || "Price not available"} // Fallback for missing price
+              coverImage={home.images.coverImage} // Pass only coverImage to Card
             />
           ))}
         </div>

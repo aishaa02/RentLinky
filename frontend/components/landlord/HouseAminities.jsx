@@ -39,7 +39,7 @@ const HouseAmenities = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-[#ededed]">
       <h1 className="text-3xl font-semibold mb-6">Select Amenities</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {amenitiesOptions.map(({ name, img }) => (

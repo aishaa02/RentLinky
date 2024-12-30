@@ -61,7 +61,7 @@ const Book = () => {
   }
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white border rounded-lg shadow-lg">
+    <div className="max-w-xl mx-auto mt-10 p-6 bg-[#ededed] border rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-green-700 mb-4">{house.name}</h2>
       <p className="text-gray-600 mb-2">{house.description}</p>
       <p className="text-lg font-medium text-gray-800 mb-2">

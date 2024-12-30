@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const HouseDetails = () => {
+const LandlordHouseDetails = () => {
   const { houseId } = useParams(); // Get houseId from URL
   const [house, setHouse] = useState(null);
   const [bookings, setBookings] = useState([]);
@@ -36,7 +36,7 @@ const HouseDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 bg-[#ededed]">
       <h1 className="text-2xl font-bold mb-4">{house.title || "House Details"}</h1>
       <div className="border rounded-lg p-4 shadow-md mb-6">
         <h2 className="text-xl font-semibold">{house.hometype}</h2>
@@ -73,4 +73,4 @@ const HouseDetails = () => {
   );
 };
 
-export default HouseDetails;
+export default LandlordHouseDetails;
