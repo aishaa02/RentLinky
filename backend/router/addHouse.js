@@ -92,59 +92,6 @@ import { House } from "../models/landLord.js";
 const homeRouter = express.Router();
 
 // Add House
-// homeRouter.post("/addHouse", isAuth, async (req, res) => {
-//   const { _id: homeId, role } = req.user;
-
-//   if (role === "Tenant") {
-//     return res.status(400).json({
-//       message: "Tenant cannot have access to add the house",
-//     });
-//   }
-
-//   const {
-//     hometype,
-//     location,
-//     bedrooms,
-//     beds,
-//     bathrooms,
-//     amenities,
-//     expired,
-//     price,
-//     title,
-//     description,
-//   } = req.body;
-
-//   // Create a new house
-//   const newHouse = new House({
-//     homeId,
-//     hometype,
-//     location,
-//     bedrooms,
-//     beds,
-//     bathrooms,
-//     amenities,
-//     expired,
-//     price,
-//     title,
-//     description,
-//   });
-
-//   try {
-//     await newHouse.save();
-
-//     res.status(200).json({
-//       message: "New house added successfully",
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({
-//       message: "Error while adding house",
-//       error: error.message,
-//     });
-//   }
-// });
-
-
 homeRouter.post("/addHouse", isAuth, async (req, res) => {
   const { _id: homeId, role } = req.user;
 
@@ -165,8 +112,6 @@ homeRouter.post("/addHouse", isAuth, async (req, res) => {
     price,
     title,
     description,
-    coverImage, // New field for cover image
-    otherImages, // New field for additional images
   } = req.body;
 
   // Create a new house
@@ -182,10 +127,6 @@ homeRouter.post("/addHouse", isAuth, async (req, res) => {
     price,
     title,
     description,
-    images: {
-      coverImage, // Assign cover image
-      otherImages, // Assign additional images
-    },
   });
 
   try {
@@ -202,7 +143,6 @@ homeRouter.post("/addHouse", isAuth, async (req, res) => {
     });
   }
 });
-
 
 // Update House
 homeRouter.put("/updateHouse/:id", isAuth, async (req, res) => {
@@ -277,4 +217,3 @@ homeRouter.delete("/deleteHouse/:id", isAuth, async (req, res) => {
 });
 
 export default homeRouter;
-

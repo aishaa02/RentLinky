@@ -18,6 +18,7 @@ const result = dotenv.config({ path: "./.env" });
 
 app.use(cookieParser())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 
 app.use(cors({
     origin: "http://localhost:5173", // Replace with your frontend URL
@@ -36,6 +37,7 @@ app.get("/",(req,res)=>{
     res.send("Hello!")
 })
 
+app.use('/uploads', express.static('uploads'));
 app.post("/registration",AuthRouter)
 app.post("/login",AuthRouter)
 app.get("/userProfile",profileRouter)
@@ -50,8 +52,7 @@ app.get("/landlordHouse",getHouseRouter)
 app.put("/profile/update",profileRouter)
 app.post("/bookHouse/:id",bookingRouter)
 app.get("/houseDetails/:houseId",detailsHouserouter)
-
-
+app.post("/uploads",homeRouter)
 
 // app.use(errorMiddleware)
 database().then(()=>{
