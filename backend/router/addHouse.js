@@ -213,6 +213,7 @@ const imagePath = `/uploads/${req.file.filename}`; // Correct usage: access file
 
 // Pass the imagePath to the house data being saved
 const newHouse = new House({
+  homeId,
   hometype,
   location,
   bedrooms,

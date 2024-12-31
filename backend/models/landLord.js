@@ -197,15 +197,16 @@ const HouseSchema = new mongoose.Schema({
   },
   coverImage: {
     type: String,
-    required: true, // Cover image is mandatory
+    required: true,
     validate: {
       validator: function (value) {
-        // Basic validation to check if it's a valid URL format
-        return /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i.test(value);
+        // Validate that the value starts with '/uploads/' and ends with an image file extension
+        return /^\/uploads\/.*\.(png|jpg|jpeg|webp)$/i.test(value);
       },
-      message: "Invalid cover image URL.",
+      message: "Invalid cover image path. It must start with '/uploads/' and end with a valid image extension.",
     },
   },
+  
 });
 
 export const House = mongoose.model("House", HouseSchema);
