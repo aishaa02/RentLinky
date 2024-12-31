@@ -65,7 +65,9 @@ const Hero = () => {
     axios
       .get("http://localhost:3000/getHouses", { withCredentials: true })
       .then((response) => {
-        setHomes(response.data); // Set the array of houses from response data
+        setHomes(response.data);
+        console.log(response.data)
+        console.log(homes) 
       })
       .catch((error) => {
         console.error("Error fetching homes:", error);

@@ -262,7 +262,7 @@ const HouseDetailsDesign = () => {
     bathrooms,
     price,
     amenities,
-    images, // Now contains coverImage and otherImages
+    coverImage, // Now contains coverImage and otherImages
     title,
     description,
   } = house;
@@ -280,21 +280,16 @@ const HouseDetailsDesign = () => {
       <div className="mb-8">
         <h3 className="text-2xl font-semibold text-[#118B50] mb-4">Image Gallery</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {images?.coverImage && (
-            <img
-              src={images.coverImage}
-              alt="Cover Image"
-              className="w-full h-[300px] object-cover rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
-            />
-          )}
-          {images?.otherImages?.slice(0, 4).map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`House image ${index + 1}`}
-              className="w-full h-[300px] object-cover rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
-            />
-          ))}
+        {coverImage && (
+  <img
+  src={`http://localhost:3000${coverImage}`}
+  alt="Cover Image"
+  className="w-full h-[300px] object-contain rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+/>
+
+)}
+
+          
         </div>
       </div>
 
