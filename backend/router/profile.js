@@ -2,7 +2,6 @@ import express from "express";
 import isAuth from "../middlewares/auth.js";
 import { User } from "../models/user.js";
 import Booking from "../models/Booking.js";
-import {House} from "../models/landLord.js"; // Assuming you have a House model for house details
 
 const profileRouter = express.Router();
 

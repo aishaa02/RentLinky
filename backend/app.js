@@ -53,6 +53,8 @@ app.put("/profile/update",profileRouter)
 app.post("/bookHouse/:id",bookingRouter)
 app.get("/houseDetails/:houseId",detailsHouserouter)
 app.post("/uploads",homeRouter)
+app.post("/manageBooking/:houseId",bookingRouter)
+app.post("/updatePayment",bookingRouter)
 
 // app.use(errorMiddleware)
 database().then(()=>{

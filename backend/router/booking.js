@@ -56,4 +56,66 @@ bookingRouter.post("/bookHouse/:id", isAuth, async (req, res) => {
   }
 });
 
+bookingRouter.post("/manageBooking/:houseId", isAuth, async (req, res) => {
+  const { houseId } = req.params; // House ID from URL
+  const { bookingId } = req.body; // Booking ID for the tenant to accept
+
+  try {
+    // Fetch all bookings for the given house
+    const bookings = await Booking.find({ houseId });
+
+    if (!bookings || bookings.length === 0) {
+      return res.status(404).json({ message: "No bookings found for the specified house." });
+    }
+
+    // Update the accepted booking
+    const acceptedBooking = bookings.find((booking) => booking._id.toString() === bookingId);
+    if (!acceptedBooking) {
+      return res.status(404).json({ message: "Booking not found for the provided booking ID." });
+    }
+
+    acceptedBooking.request = "accepted";
+    await acceptedBooking.save();
+
+    // Update all other bookings for the same house as "rejected"
+    const otherBookings = bookings.filter((booking) => booking._id.toString() !== bookingId);
+    for (const booking of otherBookings) {
+      booking.request = "rejected";
+      await booking.save();
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Booking accepted, and other requests rejected.",
+      acceptedBooking,
+      rejectedBookings: otherBookings,
+    });
+  } catch (error) {
+    console.error("Error managing bookings:", error);
+    res.status(500).json({ message: "An error occurred while managing bookings. Please try again." });
+  }
+});
+
+bookingRouter.post('/updatePayment',isAuth,  async (req, res) => {
+  const { bookingId } = req.body;
+
+  try {
+    // Update booking in the database
+    const booking = await Booking.findByIdAndUpdate(
+      bookingId,
+      { paymentStatus: 'completed' },
+      { new: true }
+    );
+
+    if (!booking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    res.status(200).json({ message: 'Payment status updated', booking });
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating payment status', error });
+  }
+});
+
+
 export default bookingRouter;

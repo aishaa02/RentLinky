@@ -205,9 +205,9 @@ const HouseSchema = new mongoose.Schema({
       },
       message: "Invalid cover image path. It must start with '/uploads/' and end with a valid image extension.",
     },
-  },
+  }
+  
   
 });
 
 export const House = mongoose.model("House", HouseSchema);
-

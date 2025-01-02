@@ -1,6 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { context } from '..//../main.jsx';
+import wifi from "./assets/wifi.png"
+import electric from "./assets/electric-heater.png"
+import parking from "./assets/parking-area.png"
+import bill from "./assets/bill.png"
+import others from "./assets/application.png"
 
 const HouseAmenities = () => {
   const { hostDetails, setHostDetails } = useContext(context);
@@ -10,11 +15,11 @@ const HouseAmenities = () => {
   const navigate = useNavigate();
 
   const amenitiesOptions = [
-    { name: 'Wifi', img: 'wifi-icon.jpg' },
-    { name: 'Warm water', img: 'warm-water-icon.jpg' },
-    { name: 'Electricity bill', img: 'electricity-icon.jpg' },
-    { name: 'Parking', img: 'parking-icon.jpg' },
-    { name: 'Others', img: 'others-icon.jpg' },
+    { name: 'Wifi', img: wifi },
+    { name: 'Warm water', img: electric },
+    { name: 'Electricity bill', img: bill },
+    { name: 'Parking', img: parking },
+    { name: 'Others', img: others },
   ];
 
   const handleSelect = (amenity) => {
