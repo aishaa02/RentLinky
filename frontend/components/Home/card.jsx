@@ -3,7 +3,7 @@
 // // // const Card = ({ id, hometype, location, bedrooms, beds, bathrooms, price }) => {
 // // //   return (
 // // //     <div className="border border-gray-300 p-4 rounded-lg shadow-md">
-// // //       <h3 className="text-xl font-semibold text-[#118B50]">{hometype}</h3>
+// // //       <h3 className="text-xl font-semibold text-[#222]">{hometype}</h3>
 // // //       <p className="text-gray-700">Location: {location}</p>
 // // //       <p className="text-gray-700">Bedrooms: {bedrooms}</p>
 // // //       <p className="text-gray-700">Beds: {beds}</p>
@@ -32,7 +32,7 @@
 // //       className="border border-gray-300 p-4 rounded-lg shadow-md cursor-pointer"
 // //       onClick={handleClick}
 // //     >
-// //       <h3 className="text-xl font-semibold text-[#118B50]">{hometype}</h3>
+// //       <h3 className="text-xl font-semibold text-[#222]">{hometype}</h3>
 // //       <p className="text-gray-700">Location: {location}</p>
 // //       <p className="text-gray-700">Bedrooms: {bedrooms}</p>
 // //       <p className="text-gray-700">Beds: {beds}</p>
@@ -67,7 +67,7 @@
 //   className="w-full h-40 object-cover mb-4 rounded"
 // />
 
-//       <h3 className="text-xl font-semibold text-[#118B50]">{hometype}</h3>
+//       <h3 className="text-xl font-semibold text-[#222]">{hometype}</h3>
 //       <p className="text-gray-700">Location: {location}</p>
 //       <p className="text-gray-700">Bedrooms: {bedrooms}</p>
 //       <p className="text-gray-700">Beds: {beds}</p>
@@ -104,7 +104,7 @@
 //       <p>Bedrooms: {bedrooms}</p>
 //       <p>Beds: {beds}</p>
 //       <p>Bathrooms: {bathrooms}</p>
-//       <p className="font-bold text-[#118B50]">₹{price}</p>
+//       <p className="font-bold text-[#222]">₹{price}</p>
 //     </div>
 //   );
 // };
@@ -154,7 +154,7 @@ const Card = ({
       </div>
 
       {/* Price */}
-      <p className="font-bold text-[#118B50]">₹{price}</p>
+      <p className="font-bold text-[#222]">₹{price}</p>
     </div>
   );
 };

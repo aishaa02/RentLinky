@@ -3,30 +3,47 @@ import isAuth from "../middlewares/auth.js";
 import { House } from "../models/landLord.js";
 
 
-const getHouseRouter=express.Router();
+const getHouseRouter = express.Router();
 
-getHouseRouter.get("/getHouses",isAuth, async (req,res)=>{
-    
-    const houses=await House.find({expired:false})
+// Get Houses
+getHouseRouter.get("/getHouses", isAuth, async (req, res) => {
+  try {
+    // Fetch all non-expired houses
+    const houses = await House.find({ expired: false }).select(
+      "hometype location bedrooms beds bathrooms amenities price title description coverImage"
+    );
 
-    res.send(houses)
+    // Return the houses
+    res.status(200).json({
+      message: "Houses fetched successfully",
+      houses,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error while fetching houses",
+      error: error.message,
+    });
+  }
+});
 
-})
 
 
 
 
-// GET /filterHouse - Filter Houses
 getHouseRouter.post("/filterHouse", isAuth, async (req, res) => {
     try {
         // Extract filter values from the request body
-        const { location, bedrooms, bathrooms } = req.body;
+        const { location, hometype, bedrooms, bathrooms, price } = req.body;
 
         // Build a dynamic filter object
-        let filter = {};
+        let filter = { expired: false };  // Default filter to exclude expired houses
 
         if (location && location.trim()) {
             filter.location = { $regex: location.trim(), $options: "i" }; // Case-insensitive location match
+        }
+        if (hometype && hometype.trim()) {
+            filter.hometype = hometype.trim(); // Match home type
         }
         if (bedrooms && !isNaN(bedrooms)) {
             filter.bedrooms = parseInt(bedrooms); // Exact match for bedrooms
@@ -34,13 +51,8 @@ getHouseRouter.post("/filterHouse", isAuth, async (req, res) => {
         if (bathrooms && bathrooms.trim()) {
             filter.bathrooms = { $regex: bathrooms.trim(), $options: "i" }; // Case-insensitive bathroom match
         }
-
-        // If no filters are provided
-        if (Object.keys(filter).length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: "No filter parameters provided",
-            });
+        if (price && !isNaN(price)) {
+            filter.price = { $lte: parseInt(price) }; // Max price filter (less than or equal to the provided price)
         }
 
         // Query the database with the constructed filter
@@ -68,6 +80,8 @@ getHouseRouter.post("/filterHouse", isAuth, async (req, res) => {
         });
     }
 });
+
+
 
 
 getHouseRouter.get("/landlordHouse", isAuth, async (req,res)=>{

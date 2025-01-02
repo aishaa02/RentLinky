@@ -67,7 +67,7 @@
 // //           />
 // //         </div>
 
-// //         <h2 className="text-center text-2xl font-bold mb-6" style={{ color: "#118B50" }}>
+// //         <h2 className="text-center text-2xl font-bold mb-6" style={{ color: "#222" }}>
 // //           Register
 // //         </h2>
 
@@ -83,7 +83,7 @@
 // //               value={formData.name}
 // //               onChange={handleChange}
 // //               placeholder="Enter Your Name"
-// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
+// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#222]"
 // //               required
 // //             />
 // //           </div>
@@ -96,7 +96,7 @@
 // //               value={formData.email}
 // //               onChange={handleChange}
 // //               placeholder="Enter Your Email"
-// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
+// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#222]"
 // //               required
 // //             />
 // //           </div>
@@ -109,7 +109,7 @@
 // //               value={formData.password}
 // //               onChange={handleChange}
 // //               placeholder="Enter Your Password"
-// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#118B50]"
+// //               className="w-full p-3 border border-gray-400 rounded-md focus:outline-none focus:border-[#222]"
 // //               required
 // //             />
 // //             <button
@@ -125,7 +125,7 @@
 // //           <div className="role-field flex items-center justify-evenly">
 // //             <div
 // //               className={`role-option flex flex-col items-center cursor-pointer ${
-// //                 formData.role === "Tenant" ? "border-[#118B50] border-2" : ""
+// //                 formData.role === "Tenant" ? "border-[#222] border-2" : ""
 // //               } p-2 rounded-lg`}
 // //               onClick={() => setFormData({ ...formData, role: "Tenant" })}
 // //             >
@@ -138,7 +138,7 @@
 // //             </div>
 // //             <div
 // //               className={`role-option flex flex-col items-center cursor-pointer ${
-// //                 formData.role === "Landlord" ? "border-[#118B50] border-2" : ""
+// //                 formData.role === "Landlord" ? "border-[#222] border-2" : ""
 // //               } p-2 rounded-lg`}
 // //               onClick={() => setFormData({ ...formData, role: "Landlord" })}
 // //             >
@@ -154,7 +154,7 @@
 // //           {/* Submit Button */}
 // //           <button
 // //             type="submit"
-// //             className="w-full p-3 bg-[#118B50] text-white font-bold rounded-md hover:bg-[#37A772]"
+// //             className="w-full p-3 bg-[#222] text-white font-bold rounded-md hover:bg-[#37A772]"
 // //           >
 // //             Register
 // //           </button>
@@ -163,7 +163,7 @@
 // //         <div className="text-center mt-6">
 // //           <span className="text-sm text-gray-600">
 // //             Already have an account?{" "}
-// //             <a href="/login" className="text-[#118B50] font-semibold">
+// //             <a href="/login" className="text-[#222] font-semibold">
 // //               Login here
 // //             </a>
 // //           </span>

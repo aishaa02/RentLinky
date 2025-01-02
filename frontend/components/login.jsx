@@ -64,7 +64,7 @@
 
 // //                 {/* Header Section */}
 // //                 <div className="w-full text-center mb-6">
-// //                     <h1 className="text-3xl font-bold text-[#118B50]">Welcome Back!</h1>
+// //                     <h1 className="text-3xl font-bold text-[#222]">Welcome Back!</h1>
 // //                     <p className="text-[#333333] text-lg">Log in to continue</p>
 // //                 </div>
 
@@ -82,7 +82,7 @@
 // //                             id="email"
 // //                             value={email}
 // //                             onChange={(e) => setEmail(e.target.value)}
-// //                             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#118B50] text-[#333333] text-lg"
+// //                             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#222] text-[#333333] text-lg"
 // //                         />
 // //                     </div>
 // //                     <div className="password-field w-full">
@@ -93,12 +93,12 @@
 // //                             placeholder="Enter Password"
 // //                             value={password}
 // //                             onChange={(e) => setPassword(e.target.value)}
-// //                             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#118B50] text-[#333333] text-lg"
+// //                             className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#222] text-[#333333] text-lg"
 // //                         />
 // //                     </div>
 // //                     <button
 // //                         type="submit"
-// //                         className="w-full bg-[#118B50] text-white py-3 rounded-lg text-lg hover:bg-[#37A772] transition-all"
+// //                         className="w-full bg-[#222] text-white py-3 rounded-lg text-lg hover:bg-[#37A772] transition-all"
 // //                     >
 // //                         Log In
 // //                     </button>
@@ -108,8 +108,8 @@
 // //                 <div className="mt-4">
 // //                     <p className="text-md text-[#333333]">
 // //                         Don't have an account?{" "}
-// //                         <span className="text-[#118B50] font-semibold cursor-pointer hover:underline">
-// //                             <a href="/registration" className="text-[#118B50] font-semibold">
+// //                         <span className="text-[#222] font-semibold cursor-pointer hover:underline">
+// //                             <a href="/registration" className="text-[#222] font-semibold">
 // //                                 Signup here
 // //                             </a>
 // //                         </span>

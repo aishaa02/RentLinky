@@ -1,19 +1,36 @@
-import express from "express"
-import isAuth from "../middlewares/auth.js"
-import { User } from "../models/user.js"
+import express from "express";
+import isAuth from "../middlewares/auth.js";
+import { User } from "../models/user.js";
+import Booking from "../models/Booking.js";
+import {House} from "../models/landLord.js"; // Assuming you have a House model for house details
 
-const profileRouter=express.Router()
+const profileRouter = express.Router();
 
-profileRouter.get("/userProfile", isAuth , async (req,res)=>{
-         const user=req.user;
-         if(!user)
-         {
-            return res.status(400).json({
-                message:"Not loged in please log in"
-            })
-         }
-          res.send(user);
-})
+profileRouter.get("/userProfile", isAuth, async (req, res) => {
+  const user = req.user;
+  if (!user) {
+    return res.status(400).json({
+      message: "Not logged in, please log in",
+    });
+  }
+
+  try {
+    // Fetch user's bookings
+    const bookings = await Booking.find({ tenantId: user._id })
+      .populate("houseId") // Populate house details in the booking
+      .populate("landlordId"); // Populate landlord details if needed
+    res.json({
+      user: user,
+      bookings: bookings,
+    });
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    res.status(500).json({
+      message: "Error fetching profile data",
+    });
+  }
+});
+
 
 
 // Update user profile details

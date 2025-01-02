@@ -134,7 +134,7 @@
 //         </div>
 //       </div>
 //       <button
-//         className="mt-8 px-6 py-3 bg-[#222] text-white text-lg rounded-lg hover:bg-[#118B50] focus:outline-none"
+//         className="mt-8 px-6 py-3 bg-[#222] text-white text-lg rounded-lg hover:bg-[#222] focus:outline-none"
 //         onClick={handleNext}
 //       >
 //         Next
@@ -217,7 +217,7 @@ const Host = () => {
           </div>
         </div>
         <button
-          className="mt-8 px-8 py-3 bg-[#222] text-white text-lg rounded-lg hover:bg-[#118B50] focus:outline-none"
+          className="mt-8 px-8 py-3 bg-[#222] text-white text-lg rounded-lg hover:bg-[#222] focus:outline-none"
           onClick={handleNext}
         >
           Next

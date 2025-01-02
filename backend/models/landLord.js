@@ -201,7 +201,7 @@ const HouseSchema = new mongoose.Schema({
     validate: {
       validator: function (value) {
         // Validate that the value starts with '/uploads/' and ends with an image file extension
-        return /^\/uploads\/.*\.(png|jpg|jpeg|webp)$/i.test(value);
+        return /^\/uploads\/.*\.(png|jpg|jpeg|webp|avif)$/i.test(value);
       },
       message: "Invalid cover image path. It must start with '/uploads/' and end with a valid image extension.",
     },
