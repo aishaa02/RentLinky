@@ -362,7 +362,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchHomes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/getHouses", {
+        const response = await axios.get("/api/getHouses", {
           withCredentials: true,
         });
 
