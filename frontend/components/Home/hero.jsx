@@ -399,7 +399,7 @@ const Hero = () => {
   const fetchFilteredHomes = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/filterHouse",
+        "/api/filterHouse",
         filters,
         { withCredentials: true }
       );
