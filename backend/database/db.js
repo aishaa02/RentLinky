@@ -1,7 +1,22 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const database= async ()=>{
-       await mongoose.connect("mongodb+srv://harshnesari:2iKWlggObvJVlSDy@tinderbackend.m90xz.mongodb.net/RentLink")
-}
+const connectDB = async () => {
+  const mongoURI = process.env.MONGODB_URI;
 
-export default database;
+  if (!mongoURI) {
+    throw new Error("❌ MONGODB_URI not found in .env");
+  }
+
+  try {
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB connected successfully");
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error.message);
+    throw error;
+  }
+};
+
+export default connectDB;
