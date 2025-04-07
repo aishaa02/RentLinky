@@ -27,4 +27,6 @@ jobs:
           app_location: "frontend"
           app_artifact_location: "dist"
           api_location: "backend"
+          output_location: "dist"   # ✅ for Vite
+
          
