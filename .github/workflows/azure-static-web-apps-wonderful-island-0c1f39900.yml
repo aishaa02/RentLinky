@@ -26,4 +26,4 @@ jobs:
           action: "upload"
           app_location: "frontend"
           api_location: "backend"
-          app_artifact_location: "frontend/dist"
+         
